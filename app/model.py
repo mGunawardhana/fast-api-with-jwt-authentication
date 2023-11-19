@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 
 class PostSchema(BaseModel):
@@ -7,7 +7,33 @@ class PostSchema(BaseModel):
     content: str = Field(default=None)
 
     class Config:
-        schema_extra = {"post_demo": {
-            "title": "some title about animals",
-            "content": "some content about animals"}
+        schema_extra = {"post_demo": {"title": "some title about animals", "content": "some content about animals"}}
+
+
+class UserSchema(BaseModel):
+    fullname: str = Field(default=None)
+    email: EmailStr = Field(default=None)
+    password: str = Field(default=None)
+
+    class Config:
+        the_schema = {
+            "user_demo":
+                {
+                    "name": "Maneesha",
+                    "email": "help@bekbrace.com",
+                    "password": "password"
+                }
+        }
+
+class UserLoginSchema(BaseModel):
+    email: EmailStr = Field(default=None)
+    password: str = Field(default=None)
+
+    class Config:
+        the_schema = {
+            "user_demo":
+                {
+                    "email": "help@bekbrace.com",
+                    "password": "password"
+                }
         }
